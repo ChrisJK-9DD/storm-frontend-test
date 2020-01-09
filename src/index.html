@@ -4,6 +4,7 @@
 	<title>Storm ID</title>	
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="src/css/index.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
@@ -13,6 +14,7 @@
 		<div class="buttonWrapper">
 			<button onClick="showAdd()"><span>+</span>Add item</button>
 		</div>
+		<img id="spinner" src="./img/833.gif" />
 		<ul id="list"></ul>
 	</div>
 
@@ -54,7 +56,8 @@
         	            listString += "<div class='delete'>X</div>";
             	        listString += "</li>";
                 	    $("ul#list").append(listString);
-                    	$("ul#list").addClass("visible");
+						$("ul#list").addClass("visible");
+						$("#spinner").addClass("hidden");
 					});
 				} else {
 					$("ul#list").append('<p>There are no tasks to list</p>');

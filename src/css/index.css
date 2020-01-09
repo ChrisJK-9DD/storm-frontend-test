@@ -43,6 +43,13 @@ h1 {
     width: calc(100% - 134px);
     text-indent: 15px;
 }
+img#spinner {
+    margin: 0 auto;
+    display: block;
+}
+img#spinner.hidden {
+    display: none;
+}
 ul#list {
     list-style: none;
     padding: 0;
