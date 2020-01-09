@@ -5,8 +5,10 @@
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<base href="/">
 	<link rel="stylesheet" type="text/css" href="src/css/index.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 </head>
 <body onload="loadDoc()">
 	<div class="wrapper">
@@ -63,7 +65,16 @@
 			$("#add").css("z-index","-1");
 			loadDoc();
 		}
-		
+		function deleteItem(id){
+            var url = "http://localhost:4000/api/task/"+id;
+			$.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function(result) {
+                    loadDoc();
+                }
+            });
+		}
 		function checkItem(id) {
 			var checkBox = $("#"+id).children()[0];
 			var newTasks = [];
@@ -143,10 +154,10 @@
 							listString += "<input class='checkbox' type='checkbox' value='" + element.id + "' onClick=checkItem(" + elementId + ") />";
 						}
 						listString += element.title;
-        	            listString += "<div class='delete'>X</div>";
+        	            listString += "<div class='delete' onClick='deleteItem(" + elementId + ")'>X</div>";
             	        listString += "</li>";
                 	    $("ul#list").append(listString);
-						$("ul#list").addClass("visible");
+                    	$("ul#list").addClass("visible");
 						$("#spinner").addClass("hidden");
 					});
 				} else {
@@ -155,5 +166,6 @@
 			})
 		}
 	</script>
+
 </body>
 </html>
