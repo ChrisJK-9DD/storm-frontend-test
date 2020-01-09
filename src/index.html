@@ -4,7 +4,54 @@
 	<title>Storm ID</title>	
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="src/css/index.css">
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
-<body>
+<body onload="loadDoc()">
+	<div class="wrapper">
+		<h1>Todo list</h1>
+		<div class="buttonWrapper">
+			<button onClick="showAdd()"><span>+</span>Add item</button>
+		</div>
+		<ul id="list"></ul>
+	</div>
+
+
+	<script>
+		var ajaxText;
+		function loadDoc() {
+			var url = "http://localhost:4000/api/task/";
+			$.ajax({
+            url : url,
+            type : 'GET',
+            contentType : 'application/json',
+            dataType: 'json'
+            }).done(function(data) {
+				ajaxText = data;
+				var listHtml = '';
+				if(ajaxText.length != 0) {
+					ajaxText.forEach(element => {
+						var importance;
+						var elementId = '"' + element.id + '"';
+						var listString;
+						if(element.isDone == "true") {
+							listString = "<li id='" + element.id + "' class='complete'>";
+							listString += "<input checked='checked' class='checkbox' type='checkbox' value='" + element.id + "'  onClick=checkItem(" + elementId + ") />";
+						} else {
+							listString = "<li id='" + element.id + "'>";
+							listString += "<input class='checkbox' type='checkbox' value='" + element.id + "' onClick=checkItem(" + elementId + ") />";
+						}
+						listString += element.title;
+        	            listString += "<div class='delete'>X</div>";
+            	        listString += "</li>";
+                	    $("ul#list").append(listString);
+                    	$("ul#list").addClass("visible");
+					});
+				} else {
+					$("ul#list").append('<p>There are no tasks to list</p>');
+				}
+			})
+		}
+	</script>
 </body>
 </html>

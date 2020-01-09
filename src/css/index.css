@@ -1,0 +1,81 @@
+html {
+    background-color: #FFFFFF;
+    font-family: Roboto, sans-serif;
+}
+body {
+    max-width: 480px;
+    background-color: #FAFAFA;
+    position: relative;
+}
+.wrapper {
+    border-top: 7px solid #262626;
+    border-bottom: 7px solid #262626;
+    margin: 0 25px;
+    min-height: 600px;
+    max-height: 100vh;
+}
+button {
+    background: #FFFFFF;
+       position: relative;
+    border-radius: 30px;
+    border: none;
+    font-size: 20px;
+    height: 40px;
+    min-width: 130px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    padding-left: 30px;
+    cursor: pointer;
+}
+button span {
+    font-size: 35px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translate(0, -50%);
+}
+h1, .buttonWrapper {
+    display: inline-block;
+}
+h1 {
+    width: calc(100% - 134px);
+    text-indent: 15px;
+}
+ul#list {
+    list-style: none;
+    padding: 0;
+}
+ul#list li {
+    margin: 3px 0;
+    padding: 10px 0 10px 50px;
+    position: relative;
+}
+ul#list li.high {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-left: 4px solid rgba(255, 0, 0, 0.3);
+}
+ul#list li.medium {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-left: 4px solid rgba(0, 255, 0, 0.3);
+}
+ul#list li.low {
+    background-color: rgba(0, 0, 255, 0.1);
+    border-left: 4px solid rgba(0, 0, 255, 0.3);
+}
+li input {
+    position: absolute;
+    cursor: pointer;
+    left: 8px;
+    top: 4px;
+    height: 25px;
+    width: 25px;
+}
+.delete {
+    float: right;
+    margin-right: 13px;
+    font-size: 18px;
+    line-height: 20px;
+    cursor: pointer;
+}
