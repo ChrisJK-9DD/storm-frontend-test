@@ -33,12 +33,21 @@
 					ajaxText.forEach(element => {
 						var importance;
 						var elementId = '"' + element.id + '"';
+						if(element.importance == 0) {
+							importance = "high"
+						}
+						if(element.importance == 1) {
+							importance = "medium"
+						}
+						if(element.importance == 2) {
+							importance = "low"
+						}
 						var listString;
 						if(element.isDone == "true") {
-							listString = "<li id='" + element.id + "' class='complete'>";
+							listString = "<li id='" + element.id + "' class='" + importance + " complete'>";
 							listString += "<input checked='checked' class='checkbox' type='checkbox' value='" + element.id + "'  onClick=checkItem(" + elementId + ") />";
 						} else {
-							listString = "<li id='" + element.id + "'>";
+							listString = "<li id='" + element.id + "' class='" + importance + "'>";
 							listString += "<input class='checkbox' type='checkbox' value='" + element.id + "' onClick=checkItem(" + elementId + ") />";
 						}
 						listString += element.title;
