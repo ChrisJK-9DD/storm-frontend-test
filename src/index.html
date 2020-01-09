@@ -20,6 +20,52 @@
 
 
 	<script>
+		function checkItem(id) {
+			var checkBox = $("#"+id).children()[0];
+			var newTasks = [];
+			var task;
+			var url = "http://localhost:4000/api/task/"+id;
+			if (checkBox.checked == true){
+				$("li#"+id).addClass("complete");
+				$.ajax({
+                url : url,
+                type : 'GET',
+                contentType : 'application/json',
+                dataType: 'json'
+            	}).done(function(data) {
+					task = data;
+					$.ajax({
+		              	url : url,
+        		        type : 'PATCH',
+						contentType : 'application/json',
+						data: JSON.stringify({ isDone: "true" }),
+		                dataType: 'json'
+        	    	}).done(function(data) {
+						loadDoc();
+					});
+				});
+			} else {
+				$("li#"+id).removeClass("complete");
+				$.ajax({
+                url : url,
+                type : 'GET',
+                contentType : 'application/json',
+                dataType: 'json'
+            	}).done(function(data) {
+					task = data;
+					$.ajax({
+		              	url : url,
+        		        type : 'PATCH',
+						contentType : 'application/json',
+						data: JSON.stringify({ isDone: "false" }),
+		                dataType: 'json'
+        	    	}).done(function(data) {
+						loadDoc();
+					});
+				});
+			}
+		}
+		
 		var ajaxText;
 		function loadDoc() {
 			var url = "http://localhost:4000/api/task/";
