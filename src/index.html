@@ -17,9 +17,53 @@
 		<img id="spinner" src="./img/833.gif" />
 		<ul id="list"></ul>
 	</div>
+	<div class="addItem" id="add">
+		<div class="addWrapper">
+			<!-- <form action="#" onsubmit="addItem()"> -->
+				<input id="taskName" type="text" name="name"/>
+				<select id="importanceLevel">
+					<option value="2">Low</option>
+					<option value="1">Medium</option>
+					<option value="0">High</option>
+				</select>
+				<button id="addButton" onClick="addItem()">Submit</button>
+			<!-- </form> -->
+		</div>
+	</div>
+	<div class="footer">Storm ID</div>
 
 
 	<script>
+		function showAdd(){
+            $("#add").css("opacity","1");
+            $("#add").css("z-index","999");
+		}
+		function addItem(){
+			var xhttpadd = new XMLHttpRequest();
+			var task;
+			var taskName =  $("#taskName")[0].value;
+			var importance = $( "#importanceLevel option:selected" ).attr("value");
+			importance = parseInt(importance);
+			task = {
+				"title": taskName,
+				"importance": importance
+			}
+			var url = "http://localhost:4000/api/task/";
+			$.ajax({
+		       	url : url,
+        	    type : 'POST',
+				contentType : 'application/json',
+				data: JSON.stringify(task),
+		        dataType: 'json'
+        	}).done(function(data) {
+				$("#taskName")[0].value = "";
+				loadDoc();
+			});
+			$("#add").css("opacity","0");
+			$("#add").css("z-index","-1");
+			loadDoc();
+		}
+		
 		function checkItem(id) {
 			var checkBox = $("#"+id).children()[0];
 			var newTasks = [];
@@ -65,7 +109,7 @@
 				});
 			}
 		}
-		
+
 		var ajaxText;
 		function loadDoc() {
 			var url = "http://localhost:4000/api/task/";

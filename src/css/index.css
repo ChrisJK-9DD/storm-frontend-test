@@ -71,9 +71,15 @@ ul#list li.low {
     background-color: rgba(0, 0, 255, 0.1);
     border-left: 4px solid rgba(0, 0, 255, 0.3);
 }
+ul#list li.complete {
+    opacity: 0.5;
+}
 li input {
     position: absolute;
+    /* opacity: 0; */
     cursor: pointer;
+    /* height: 0;
+    width: 0; */
     left: 8px;
     top: 4px;
     height: 25px;
@@ -85,4 +91,38 @@ li input {
     font-size: 18px;
     line-height: 20px;
     cursor: pointer;
+}
+.addItem {
+    position: absolute;
+    bottom: 56px;
+    left: 0;
+    width: 100%;
+    right: 0;
+    height: 25vh;
+    opacity: 0;
+    /* border: 1px solid #262626; */
+    background: #FAFAFA;
+    z-index: -1;
+}
+.addWrapper {
+    padding: 50px;
+}
+.addWrapper input[type="text"] {
+    width: 100%;
+    margin-bottom: 20px;
+    width: 48%;
+}
+.addWrapper select {
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 48%;
+    margin-left: 1%;
+}
+button#addButton {
+    padding-left: 0;
+}
+.footer {
+    margin: 10px 25px;
+    text-align: right;
+    padding-bottom: 20px;
 }
